@@ -1,0 +1,22 @@
+name: Auto Sync Dotfiles
+
+on:
+  schedule:
+    - cron: '0 7 * * *'  # Every day at 7:00 UTC
+  workflow_dispatch:     # Allow manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Commit and Push Any Changes
+        run: |
+          git config --global user.name "Jesseray4u"
+          git config --global user.email "jrc8541ss@gmail.com"
+          git add .
+          timestamp=$(date -u)
+          git commit -m "🔄 Auto-sync at $timestamp" || echo "No changes"
+          git push
