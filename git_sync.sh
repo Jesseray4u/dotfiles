@@ -12,3 +12,4 @@ git commit -m "Auto backup at $timestamp"
 git push origin master
 
 echo "✅ Dotfiles and scripts backed up to GitHub at $timestamp"
+bash "$HOME/dotfiles/scripts/log_sync_event.sh" "sync" "success" "Auto-logged from git_sync.sh"
